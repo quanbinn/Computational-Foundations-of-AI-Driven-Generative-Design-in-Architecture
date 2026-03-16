@@ -26,8 +26,7 @@
 - Matplotlib画布与坐标系
 	- 二维：[pyplot.scatter()](/chapters/计算机绘图基础/Matplotlib画布与坐标系/二维/pyplot.scatter().md) | [pyplot.plot()](/chapters/计算机绘图基础/Matplotlib画布与坐标系/二维/pyplot.plot().md) | [pyplot.show()](/chapters/计算机绘图基础/Matplotlib画布与坐标系/二维/pyplot.show().md) | [axes()](/chapters/计算机绘图基础/Matplotlib画布与坐标系/二维/axes().md) | [figure()](/chapters/计算机绘图基础/Matplotlib画布与坐标系/二维/figure().md) | [subplot()](/chapters/计算机绘图基础/Matplotlib画布与坐标系/二维/subplot().md) | [subplots()](/chapters/计算机绘图基础/Matplotlib画布与坐标系/二维/subplots().md) |  [figure().add_axes()](/chapters/计算机绘图基础/Matplotlib画布与坐标系/二维/figure().add_axes().md) | [figure().add_subplot()](/chapters/计算机绘图基础/Matplotlib画布与坐标系/二维/figure().add_subplot().md) 
 	- 三维：[projection='3d'](/chapters/计算机绘图基础/Matplotlib画布与坐标系/三维/projection='3d'.md) | [Axes3D.scatter()](/chapters/计算机绘图基础/Matplotlib画布与坐标系/三维/Axes3D.scatter().md) | [Axes3D.plot()](/chapters/计算机绘图基础/Matplotlib画布与坐标系/三维/Axes3D.plot().md) | [Axes3D.plot_surface()](/chapters/计算机绘图基础/Matplotlib画布与坐标系/三维/Axes3D.plot_surface().md)  
-	- 三维几何对象绘制
-		- [空间线段](/chapters/计算机绘图基础/Matplotlib画布与坐标系/三维几何对象绘制/空间线段.md) | [空间点定向射线](/chapters/计算机绘图基础/Matplotlib画布与坐标系/三维几何对象绘制/空间点定向射线.md) |  [水平平面](/chapters/计算机绘图基础/Matplotlib画布与坐标系/三维几何对象绘制/水平平面.md) | [垂直平面](/chapters/计算机绘图基础/Matplotlib画布与坐标系/三维几何对象绘制/垂直平面.md) | [倾斜平面](/chapters/计算机绘图基础/Matplotlib画布与坐标系/三维几何对象绘制/倾斜平面.md) 
+	- 三维几何对象绘制：[空间线段](/chapters/计算机绘图基础/Matplotlib画布与坐标系/三维几何对象绘制/空间线段.md) | [空间点定向射线](/chapters/计算机绘图基础/Matplotlib画布与坐标系/三维几何对象绘制/空间点定向射线.md) |  [水平平面](/chapters/计算机绘图基础/Matplotlib画布与坐标系/三维几何对象绘制/水平平面.md) | [垂直平面](/chapters/计算机绘图基础/Matplotlib画布与坐标系/三维几何对象绘制/垂直平面.md) | [倾斜平面](/chapters/计算机绘图基础/Matplotlib画布与坐标系/三维几何对象绘制/倾斜平面.md) 
 
 ### 二维空间布局算法
 
