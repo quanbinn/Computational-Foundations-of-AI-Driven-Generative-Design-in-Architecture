@@ -1,64 +1,103 @@
-# X轴方向投影距离
-
-## 开始做实体实验
-
-![](/images/三维空间布局算法/长方体对象与几何运算/长方体间关系计算/X轴方向投影距离/1a1.jpg)
+# 两个长方体的底面中心点在X轴方向投影距离
 
 ```python
 import matplotlib.pyplot as plt
-plt.axis('equal')
 
-class Rectangle_center:
-    def __init__(self, xOfCenter, yOfCenter, width, height):
+# ==========================================================
+# 创建3D坐标系
+# ==========================================================
+fig = plt.figure()
+ax = fig.add_subplot(111, projection='3d')
+
+ax.set_xlim((0, 50))
+ax.set_ylim((0, 50))
+ax.set_zlim((0, 50))
+
+
+# ==========================================================
+# Cuboid（长方体类）
+# ==========================================================
+class Cuboid:
+    """
+    教学版长方体：
+    用中心点 + 尺寸定义一个3D盒子
+    """
+
+    def __init__(self, xOfCenter, yOfCenter, zOfCenter, width, height, depth):
+
+        # =========================
+        # 中心点坐标
+        # =========================
         self.xOfCenter = xOfCenter
         self.yOfCenter = yOfCenter
-        self.x1 = xOfCenter - width / 2
-        self.y1 = yOfCenter - height / 2
-        self.x2 = xOfCenter + width / 2
-        self.y2 = yOfCenter + height / 2
+        self.zOfCenter = zOfCenter
+
+        # 尺寸
         self.width = width
-        self.height = height        
-    
-    def getxofCenter(self): return self.getxofCenter
-    def getyOfCenter(self): return self.yOfCenter
-    def getx1(self): return self.x1
-    def gety1(self): return self.y1
-    def getx2(self): return self.x2
-    def gety2(self): return self.y2
-    def getWidth(self): return self.width
-    def getHeight(self): return self.height
+        self.height = height
+        self.depth = depth
 
-    def area(self):
-        area = self.width * self.height
-        return area
+    # ==========================================================
+    # 获取中心点
+    # ==========================================================
+    def base_center(self):
+        """
+        返回中心点坐标 (x, y, z)
+        """
+        return [self.xOfCenter, self.yOfCenter, self.zOfCenter]
 
-    def centralCoordinates(self):
-        centralCoordinates = [self.xOfCenter, self.yOfCenter]
-        return centralCoordinates
-        
+    # ==========================================================
+    # 3D绘制
+    # ==========================================================
     def render(self):
-        p1 = [self.x1, self.y1]
-        p2 = [self.x2, self.y1]
-        p3 = [self.x2, self.y2]
-        p4 = [self.x1, self.y2]
 
-        plt.plot([p1[0], p2[0]],[p1[1], p2[1]],color="green")
-        plt.plot([p2[0], p3[0]],[p2[1], p3[1]],color="green")
-        plt.plot([p3[0], p4[0]],[p3[1], p4[1]],color="green")
-        plt.plot([p4[0], p1[0]],[p4[1], p1[1]],color="green")   
+        x = self.xOfCenter - self.width / 2
+        y = self.yOfCenter - self.height / 2
+        z = self.zOfCenter - self.depth / 2
 
-def distance_of_edges_in_xaxis(rect1, rect2):
-    x1 = rect1.centralCoordinates()[0]
-    x2 = rect2.centralCoordinates()[0]
-    dist_of_centralPoints_in_xaxis = abs(x2-x1)
-    distance = dist_of_centralPoints_in_xaxis - (rect1.getWidth()/2 + rect2.getWidth()/2)
-    return distance    
-        
-rect1 = Rectangle_center(0,0,10,10)
-rect1.render()
+        ax.bar3d(
+            x, y, z,
+            self.width,
+            self.height,
+            self.depth,
+            color="green",
+            alpha=0.5
+        )
 
-rect2 = Rectangle_center(3,15,5,5)
-rect2.render()   
 
-print(distance_of_edges_in_xaxis(rect1, rect2))
+# ==========================================================
+# X轴投影距离（核心函数）
+# ==========================================================
+def distance_x_projection(cuboid1, cuboid2):
+    """
+    计算两个长方体中心点在 X 轴方向的投影距离
+    """
+
+    x1, _, _ = cuboid1.base_center()
+    x2, _, _ = cuboid2.base_center()
+
+    return abs(x2 - x1)
+
+
+# ==========================================================
+# 示例数据
+# ==========================================================
+cuboid1 = Cuboid(10, 20, 8, 16, 8, 16)
+cuboid2 = Cuboid(15, 20, 4, 16, 16, 24)
+
+# ==========================================================
+# 绘制
+# ==========================================================
+cuboid1.render()
+cuboid2.render()
+
+# ==========================================================
+# 计算X轴投影距离
+# ==========================================================
+print("X轴投影距离：", distance_x_projection(cuboid1, cuboid2))
+
+# ==========================================================
+# 显示
+# ==========================================================
+plt.show()
 ```
