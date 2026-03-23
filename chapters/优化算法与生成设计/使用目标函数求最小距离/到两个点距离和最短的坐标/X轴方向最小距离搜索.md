@@ -12,28 +12,42 @@ import numpy as np
 import random
 import math
 
-x = float(input('input any number between 0 and 20: \n'))	  # x = random.uniform(0,20)
-y = float(input('input any number between 0 and 15: \n'))	  # y = random.uniform(0,15)
+# ---------------- 输入数据 ----------------
+x = float(input('input any number between 0 and 20: \n'))  # x = random.uniform(0,20)
+y = float(input('input any number between 0 and 15: \n'))  # y = random.uniform(0,15)
 
-p1 = [2,3]		# the 2D coordinates of existing point A
-p2 = [14,12]	# the 2D coordinates of existing point B
-p3 = [x,y]		# the 2D coordinates of desired point C
+# ---------------- 固定点定义 ----------------
+p1 = [2, 3]     # the 2D coordinates of existing point A
+p2 = [14, 12]   # the 2D coordinates of existing point B
+p3 = [x, y]     # the 2D coordinates of desired point C
 
-def sum_of_distances(p1,p2,p3):
-	sum = math.sqrt((p3[0]-p1[0])**2 + (p3[1]-p1[1])**2) + math.sqrt((p3[0]-p2[0])**2 + (p3[1]-p2[1])**2)
-	return sum
+# ---------------- 距离函数 ----------------
+def sum_of_distances(p1, p2, p3):
+    total = (
+        math.sqrt((p3[0] - p1[0])**2 + (p3[1] - p1[1])**2) +
+        math.sqrt((p3[0] - p2[0])**2 + (p3[1] - p2[1])**2)
+    )
+    return total
 
+# ---------------- 初始状态 ----------------
 init_distances = sum_of_distances(p1, p2, p3)
 print(init_distances)
 
-for i in range(1,20):
+# ---------------- 单方向搜索（x轴递减） ----------------
+for i in range(1, 20):
+
     p3[0] = p3[0] - 1
+
     if sum_of_distances(p1, p2, p3) < init_distances:
         print(p3)
         print(sum_of_distances(p1, p2, p3))
-        plt.scatter([p3[0]],[p3[1]])
 
-plt.scatter([p1[0],p2[0]],[p1[1],p2[1]])
+        # ---------------- 绘制方法 ----------------
+        plt.scatter([p3[0]], [p3[1]])
+
+# ---------------- 绘制固定点 ----------------
+plt.scatter([p1[0], p2[0]], [p1[1], p2[1]])
+
 plt.show()
 ```
 
@@ -45,29 +59,45 @@ import numpy as np
 import random
 import math
 
-x = float(input('input any number between 0 and 20: \n'))	  # x = random.uniform(0,20)
-y = float(input('input any number between 0 and 15: \n'))	  # y = random.uniform(0,15)
+# ---------------- 输入数据 ----------------
+x = float(input('input any number between 0 and 20: \n'))  # x = random.uniform(0,20)
+y = float(input('input any number between 0 and 15: \n'))  # y = random.uniform(0,15)
 
-p1 = [2,3]		# the 2D coordinates of existing point A
-p2 = [14,12]	# the 2D coordinates of existing point B
-p3 = [x,y]		# the 2D coordinates of desired point C
+# ---------------- 固定点定义 ----------------
+p1 = [2, 3]     # the 2D coordinates of existing point A
+p2 = [14, 12]   # the 2D coordinates of existing point B
+p3 = [x, y]     # the 2D coordinates of desired point C
 
-def sum_of_distances(p1,p2,p3):
-	sum = math.sqrt((p3[0]-p1[0])**2 + (p3[1]-p1[1])**2) + math.sqrt((p3[0]-p2[0])**2 + (p3[1]-p2[1])**2)
-	return sum
+# ---------------- 距离函数 ----------------
+def sum_of_distances(p1, p2, p3):
+    total = (
+        math.sqrt((p3[0] - p1[0])**2 + (p3[1] - p1[1])**2) +
+        math.sqrt((p3[0] - p2[0])**2 + (p3[1] - p2[1])**2)
+    )
+    return total
 
+# ---------------- 初始状态 ----------------
 init_distances = sum_of_distances(p1, p2, p3)
 print(init_distances)
 
-for i in range(1,20):
-	previous_distances = sum_of_distances(p1, p2, p3)
-	p3[0] = p3[0] - 1
-	moved_distances = sum_of_distances(p1, p2, p3)
-	if moved_distances < previous_distances:
-		print('At point ',p3,', the total distances is ',moved_distances)
-		plt.scatter([p3[0]],[p3[1]])
+# ---------------- x轴单向搜索 ----------------
+for i in range(1, 20):
 
-plt.scatter([p1[0],p2[0]],[p1[1],p2[1]])
+    previous_distances = sum_of_distances(p1, p2, p3)
+
+    p3[0] = p3[0] - 1
+
+    moved_distances = sum_of_distances(p1, p2, p3)
+
+    if moved_distances < previous_distances:
+        print('At point', p3, ', the total distances is', moved_distances)
+
+        # ---------------- 绘制方法 ----------------
+        plt.scatter([p3[0]], [p3[1]])
+
+# ---------------- 绘制固定点 ----------------
+plt.scatter([p1[0], p2[0]], [p1[1], p2[1]])
+
 plt.show()
 ```
 
@@ -79,30 +109,46 @@ import numpy as np
 import random
 import math
 
-x = float(input('input any number between 0 and 20: \n'))	  # x = random.uniform(0,20)
-y = float(input('input any number between 0 and 15: \n'))	  # y = random.uniform(0,15)
-stepsize = float(input('input stepsize between 0 and 1: \n'))	  # x = random.uniform(0,1)
+# ---------------- 输入数据 ----------------
+x = float(input('input any number between 0 and 20: \n'))  # x = random.uniform(0,20)
+y = float(input('input any number between 0 and 15: \n'))  # y = random.uniform(0,15)
+stepsize = float(input('input stepsize between 0 and 1: \n'))  # x = random.uniform(0,1)
 
-p1 = [2,3]		# the 2D coordinates of existing point A
-p2 = [14,12]	# the 2D coordinates of existing point B
-p3 = [x,y]		# the 2D coordinates of desired point C
+# ---------------- 固定点定义 ----------------
+p1 = [2, 3]     # the 2D coordinates of existing point A
+p2 = [14, 12]   # the 2D coordinates of existing point B
+p3 = [x, y]     # the 2D coordinates of desired point C
 
-def sum_of_distances(p1,p2,p3):
-	sum = math.sqrt((p3[0]-p1[0])**2 + (p3[1]-p1[1])**2) + math.sqrt((p3[0]-p2[0])**2 + (p3[1]-p2[1])**2)
-	return sum
+# ---------------- 距离函数 ----------------
+def sum_of_distances(p1, p2, p3):
+    total = (
+        math.sqrt((p3[0] - p1[0])**2 + (p3[1] - p1[1])**2) +
+        math.sqrt((p3[0] - p2[0])**2 + (p3[1] - p2[1])**2)
+    )
+    return total
 
+# ---------------- 初始状态 ----------------
 init_distances = sum_of_distances(p1, p2, p3)
 print(init_distances)
 
-for i in range(1,20):
-	previous_distances = sum_of_distances(p1, p2, p3)
-	p3[0] = p3[0] - stepsize
-	moved_distances = sum_of_distances(p1, p2, p3)
-	if moved_distances < previous_distances:
-		print('At point ',p3,', the total distances is ',moved_distances)
-		plt.scatter([p3[0]],[p3[1]])
+# ---------------- x轴方向步进搜索 ----------------
+for i in range(1, 20):
 
-plt.scatter([p1[0],p2[0]],[p1[1],p2[1]])
+    previous_distances = sum_of_distances(p1, p2, p3)
+
+    p3[0] = p3[0] - stepsize
+
+    moved_distances = sum_of_distances(p1, p2, p3)
+
+    if moved_distances < previous_distances:
+        print('At point', p3, ', the total distances is', moved_distances)
+
+        # ---------------- 绘制方法 ----------------
+        plt.scatter([p3[0]], [p3[1]])
+
+# ---------------- 绘制固定点 ----------------
+plt.scatter([p1[0], p2[0]], [p1[1], p2[1]])
+
 plt.show()
 ```
 
@@ -112,38 +158,61 @@ import numpy as np
 import random
 import math
 
-x = float(input('input any number between 0 and 20: \n'))	  # x = random.uniform(0,20)
-y = float(input('input any number between 0 and 15: \n'))	  # y = random.uniform(0,15)
-stepsize = float(input('input stepsize between 0 and 1: \n'))	  # x = random.uniform(0,1)
+# ---------------- 输入数据 ----------------
+x = float(input('input any number between 0 and 20: \n'))  # x = random.uniform(0,20)
+y = float(input('input any number between 0 and 15: \n'))  # y = random.uniform(0,15)
+stepsize = float(input('input stepsize between 0 and 1: \n'))  # x = random.uniform(0,1)
 
-p1 = [2,3]		# the 2D coordinates of existing point A
-p2 = [14,12]	# the 2D coordinates of existing point B
-p3 = [x,y]		# the 2D coordinates of desired point C
+# ---------------- 固定点定义 ----------------
+p1 = [2, 3]     # the 2D coordinates of existing point A
+p2 = [14, 12]   # the 2D coordinates of existing point B
+p3 = [x, y]     # the 2D coordinates of desired point C
 
-def sum_of_distances(p1,p2,p3):
-	sum = math.sqrt((p3[0]-p1[0])**2 + (p3[1]-p1[1])**2) + math.sqrt((p3[0]-p2[0])**2 + (p3[1]-p2[1])**2)
-	return sum
+# ---------------- 距离函数 ----------------
+def sum_of_distances(p1, p2, p3):
+    total = (
+        math.sqrt((p3[0] - p1[0])**2 + (p3[1] - p1[1])**2) +
+        math.sqrt((p3[0] - p2[0])**2 + (p3[1] - p2[1])**2)
+    )
+    return total
 
+# ---------------- 初始状态 ----------------
 init_distances = sum_of_distances(p1, p2, p3)
 print(init_distances)
 
-for i in range(1,20):
-	previous_distances = sum_of_distances(p1, p2, p3)
-	p3[0] = p3[0] - stepsize
-	moved_distances = sum_of_distances(p1, p2, p3)
-	if moved_distances < previous_distances:
-		print('At point ',p3,', the total distances is ',moved_distances)
-		plt.scatter([p3[0]],[p3[1]])
+# ---------------- x轴粗粒度搜索 ----------------
+for i in range(1, 20):
 
-for i in range(1,20):
-	previous_distances = sum_of_distances(p1, p2, p3)
-	p3[0] = p3[0] - stepsize/4
-	moved_distances = sum_of_distances(p1, p2, p3)
-	if moved_distances < previous_distances:
-		print('At point ',p3,', the total distances is ',moved_distances)
-		plt.scatter([p3[0]],[p3[1]])
+    previous_distances = sum_of_distances(p1, p2, p3)
 
-plt.scatter([p1[0],p2[0]],[p1[1],p2[1]])
+    p3[0] = p3[0] - stepsize
+
+    moved_distances = sum_of_distances(p1, p2, p3)
+
+    if moved_distances < previous_distances:
+        print('At point', p3, ', the total distances is', moved_distances)
+
+        # ---------------- 绘制方法 ----------------
+        plt.scatter([p3[0]], [p3[1]])
+
+# ---------------- x轴细粒度搜索 ----------------
+for i in range(1, 20):
+
+    previous_distances = sum_of_distances(p1, p2, p3)
+
+    p3[0] = p3[0] - stepsize / 4
+
+    moved_distances = sum_of_distances(p1, p2, p3)
+
+    if moved_distances < previous_distances:
+        print('At point', p3, ', the total distances is', moved_distances)
+
+        # ---------------- 绘制方法 ----------------
+        plt.scatter([p3[0]], [p3[1]])
+
+# ---------------- 绘制固定点 ----------------
+plt.scatter([p1[0], p2[0]], [p1[1], p2[1]])
+
 plt.show()
 ```
 

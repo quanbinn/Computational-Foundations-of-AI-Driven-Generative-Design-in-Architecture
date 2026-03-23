@@ -10,19 +10,34 @@ import matplotlib.pyplot as plt
 from matplotlib import cm
 import numpy as np
 
+# ---------------- 坐标系初始化 ----------------
 fig = plt.figure()
 ax = fig.add_subplot(111, projection='3d')
 
-X = np.arange(0, 20, 0.25)				# the 2D coordinates of desired point C: x
-Y = np.arange(0, 15, 0.25)				# the 2D coordinates of desired point C: y
-X, Y = np.meshgrid(X, Y)				# the 2D coordinates of desired point C: [x,y]
+# ---------------- 坐标网格生成 ----------------
+X = np.arange(0, 20, 0.25)   # x coordinate of point C
+Y = np.arange(0, 15, 0.25)   # y coordinate of point C
+X, Y = np.meshgrid(X, Y)     # 2D grid [x, y]
 
-d1 = np.sqrt((X-2)**2 + (Y-3)**2)		# the 2D coordinates of existing point A: [2,3]
-d2 = np.sqrt((X-14)**2 + (Y-12)**2)		# the 2D coordinates of existing point B: [14,12]
+# ---------------- 距离场计算 ----------------
+# fixed point A: [2, 3]
+d1 = np.sqrt((X - 2)**2 + (Y - 3)**2)
 
+# fixed point B: [14, 12]
+d2 = np.sqrt((X - 14)**2 + (Y - 12)**2)
+
+# total distance field
 Z = d1 + d2
 
-ax.plot_surface(X, Y, Z, rstride=1, cstride=1, cmap=cm.coolwarm, linewidth=0, antialiased=False)
+# ---------------- 绘制方法 ----------------
+ax.plot_surface(
+    X, Y, Z,
+    rstride=1,
+    cstride=1,
+    cmap=cm.coolwarm,
+    linewidth=0,
+    antialiased=False
+)
 
 plt.show()
 ```
