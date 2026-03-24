@@ -3,12 +3,14 @@
 ```python
 import matplotlib.pyplot as plt
 
-# 设置绘图比例相等
-plt.axis('equal')
+# ---------------- 坐标设置 ----------------
+plt.axis('equal')  # 设置绘图比例相等
 
-
+# ---------------- 矩形类（中心点定义） ----------------
 class Rectangle_center:
     """以中心点坐标创建的矩形类"""
+
+    # ---------------- 初始化 ----------------
     def __init__(self, xOfCenter, yOfCenter, length, width):
         self.xOfCenter = xOfCenter
         self.yOfCenter = yOfCenter
@@ -22,15 +24,15 @@ class Rectangle_center:
         self.length = length
         self.width = width        
 
-    # 获取属性方法
+    # ---------------- 属性访问 ----------------
     def getlength(self): return self.length
     def getwidth(self): return self.width
 
-    # 获取中心点
+    # ---------------- 中心点获取 ----------------
     def centralCoordinates(self):
         return [self.xOfCenter, self.yOfCenter]
 
-    # 绘制矩形
+    # ---------------- 绘制方法 ----------------
     def render(self):
         p1 = [self.x1, self.y1]
         p2 = [self.x2, self.y1]
@@ -42,10 +44,7 @@ class Rectangle_center:
         plt.plot([p3[0], p4[0]], [p3[1], p4[1]], color="green")
         plt.plot([p4[0], p1[0]], [p4[1], p1[1]], color="green")
 
-
-# ==========================================================
-# X轴方向：中心点投影距离（修改核心）
-# ==========================================================
+# ---------------- X轴方向中心投影距离 ----------------
 def distance_of_centers_in_xaxis(rect1, rect2):
     """
     两个矩形中心点在 X 轴方向的投影距离
@@ -56,23 +55,17 @@ def distance_of_centers_in_xaxis(rect1, rect2):
 
     return abs(x2 - x1)
 
-
-# ==========================================================
-# 创建矩形并绘制
-# ==========================================================
+# ---------------- 创建矩形并绘制 ----------------
 rect1 = Rectangle_center(0, 0, 10, 10)
 rect1.render()
 
 rect2 = Rectangle_center(3, 15, 5, 5)
 rect2.render()
 
-
-# ==========================================================
-# 计算中心点 X 轴投影距离
-# ==========================================================
+# ---------------- 距离计算 ----------------
 dist_x = distance_of_centers_in_xaxis(rect1, rect2)
-
 print('两个矩形中心点在X轴方向的投影距离是：', dist_x)
 
+# ---------------- 图形显示 ----------------
 plt.show()
 ```
